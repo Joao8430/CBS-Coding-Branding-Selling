@@ -1,0 +1,127 @@
+<!DOCTYPE html> <!-- Define o tipo de documento como HTML5 -->
+<html lang="pt-br"> <!-- Define o idioma principal da página como português do Brasil -->
+
+<head> <!-- Cabeçalho do documento: contém metadados, título e links externos -->
+    <meta charset="utf-8" /> <!-- Define o conjunto de caracteres como UTF-8 (suporta acentos e caracteres especiais) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Garante que a página seja responsiva em dispositivos móveis -->
+    <title>Meu projeto CBS</title> <!-- Define o título exibido na aba do navegador -->
+
+    <!-- Pré-conexão para otimizar o carregamento das fontes hospedadas no Google -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />  
+
+    <!-- Importação da fonte "Inter" do Google Fonts -->
+    <link 
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"  
+        rel="stylesheet" 
+    />
+
+    <!-- Link para o arquivo CSS externo que contém os estilos da página -->
+    <link rel="stylesheet" href="style.css" /> 
+</head> 
+
+<body> <!-- Corpo da página: tudo que é exibido ao usuário fica aqui -->
+
+    <!-- Barra superior com contador regressivo -->
+    <div class="bar"> 
+        <div class="bar-inner">
+            <div class="bar-title">A aula começa em…</div>
+            <div class="count" id="countdown">
+                <!-- Estrutura de contagem regressiva (Dias, Horas, Minutos, Segundos) -->
+                <div class="chunk">
+                    <span class="num" id="d">00</span> <!-- Número de dias -->
+                    <span class="label">Dias</span>
+                </div>
+                <div class="chunk">
+                    <span class="num" id="h">00</span> <!-- Número de horas -->
+                    <span class="label">Horas</span>
+                </div>
+                <div class="chunk">
+                    <span class="num" id="m">00</span> <!-- Número de minutos -->
+                    <span class="label">Minutos</span>
+                </div>
+                <div class="chunk">
+                    <span class="num" id="s">00</span> <!-- Número de segundos -->
+                    <span class="label">Segundos</span> <!--A escrita do segundos na tela-->
+                </div> 
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo principal da página -->
+    <main class="wrap">
+        <section class="hero">
+            <div class="left">
+                
+                <!-- Caixa de ajuda com ícone e texto informativo -->
+                <div class="help" aria-label="Informação sobre aula ao vivo">
+                    <span class="mini" aria-hidden="true">
+                        <!-- Ícone SVG de calendário -->
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                            <path d="M7 2h2v2h6V2h2v2h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2V2Zm12 8H5v10h14V10Zm0-4H5v2h14V6Z" />
+                        </svg>
+                    </span>
+                    <span>Aprenda a programar <strong>AO VIVO</strong> e de graça.</span>
+                </div>
+
+                <!-- Título principal da seção -->
+                <h1 class="title">
+                    <span class="highlight">Live Semanal</span> e<br />
+                    <span class="accent">100% Gratuita</span><br />
+                    no <span class="yt">YouTube</span>
+                </h1>
+
+                <!-- Subtítulo com explicação adicional -->
+                <p class="sub">
+                    Aprenda programação do zero ao avançado, todas as semanas, em aulas práticas e ao vivo.
+                </p>
+
+                <!-- Formulário de inscrição -->
+                <form class="card" id="leadForm" novalidate>
+                    <div class="row">
+                        <!-- Campo para digitar o nome -->
+                        <input
+                            id="nome"
+                            class="in in--light"
+                            name="nome"
+                            type="text"
+                            placeholder="•  Digite seu primeiro nome"
+                            required
+                            autocomplete="given-name"
+                        />
+                        <!-- Campo para digitar o email -->
+                        <input
+                            id="email"
+                            class="in in--light"
+                            name="email"
+                            type="email"
+                            placeholder="•  Digite seu email"
+                            required
+                            autocomplete="email"
+                        />
+                        <!-- Campo para digitar o telefone -->
+                        <input
+                            id="tel"
+                            class="in in--light"
+                            name="telefone"
+                            type="tel"
+                            placeholder="•  (DDD)  +  Telefone"
+                            required
+                            autocomplete="tel"
+                        />
+                        <!-- Botão de envio do formulário -->
+                        <button class="btn btn--hero" type="submit" id="cta" aria-label="Quero me inscrever">
+                            <span class="cta-arrow" aria-hidden="true">›</span>
+                            <span class="cta-text">Quero me inscrever</span> <!--Aparecer escrito na tela dentro do bloco-->
+                            <img src="youtube.svg" alt="YouTube" /> <!-- Ícone do YouTube -->
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Importa o arquivo JS que contém a lógica da contagem regressiva e outras funcionalidades -->
+    <script src="main.js"></script>
+
+</body>
+</html>

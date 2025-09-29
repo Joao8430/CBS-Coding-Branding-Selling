@@ -1,0 +1,466 @@
+:root {
+    /* Variáveis CSS para cores principais e espaçamentos */
+    --bg: #0b0b0d; /* Cor de fundo principal */
+    --bg-2: #101014; /* Cor de fundo secundária */
+    --stroke: #26262c; /* Cor para bordas e traços */
+    --text: #e7e7ea; /* Cor do texto principal */
+    --muted: #a9a9b5; /* Cor para textos secundários ou desativados */
+    --primary: #ef233c; /* Cor primária (vermelho vibrante) */
+    --primary-2: #b3001b; /* Cor primária escurecida */
+    --ring: rgba(239, 35, 60, 0.45); /* Cor para efeitos de anel/transparência */
+    --ok: #22c55e; /* Cor para indicar sucesso ou OK */
+
+    --hero-offset-y: 30px; /* Deslocamento vertical para o herói */
+}
+
+* {
+    /* Define box-sizing para incluir padding e border na largura e altura */
+    box-sizing: border-box; 
+}
+
+html, body {
+    /* Define altura total, remove margens, define fonte e cores base */
+    height: 100%; 
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    color: var(--text);
+    background-color: var(--bg);
+    overflow-x: hidden; /* Evita scroll horizontal */
+}
+
+.help {
+    /* Estilo para um componente de ajuda com layout flexível e espaçamento */
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    width: max-content;
+    color: #f4f4f8;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.15px;
+    margin-bottom: 14px;
+
+    /* Fundo com gradientes para efeito visual */
+    background:
+        radial-gradient(120% 120% at 0% 0%, rgba(239, 35, 60, 0.22), transparent 60%),
+        linear-gradient(180deg, rgba(239, 35, 60, 0.1), rgba(239, 35, 60, 0.06));
+    border: 1px solid rgba(239, 35, 60, 0.38);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+        0 6px 22px rgba(239, 35, 60, 0.18);
+    backdrop-filter: saturate(120%) blur(2px);
+    -webkit-backdrop-filter: saturate(120%) blur(2px);
+}
+
+.help strong {
+    /* Destaque para texto forte dentro do componente ajuda */
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.help .mini {
+    /* Estilo para um pequeno badge ou ícone dentro do componente ajuda */
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+
+    background: rgba(239, 35, 60, 0.18);
+    border: 1px solid rgba(239, 35, 60, 0.5);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 6px 18px rgba(239, 35, 60, 0.25);
+}
+
+.help .mini img,
+.help .mini svg {
+    /* Tamanho e cor para imagens ou SVGs dentro do mini badge */
+    width: 18px;
+    height: 18px;
+    color: #ff808c;
+    opacity: 0.95;
+}
+
+.help .mini:empty {
+    /* Estilo para mini badge vazio com padrão de fundo */
+    background:
+        radial-gradient(circle at 50% 50%, rgba(239, 35, 60, 0.9) 0 30%, transparent 32%) center/12px 12px no-repeat,
+        rgba(239, 35, 60, 0.18);
+}
+
+.bar {
+    /* Barra fixa no topo da página com fundo translúcido e blur */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: none;
+}
+
+.bar::after {
+    /* Linha decorativa na parte inferior da barra com gradiente e sombra */
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(239, 35, 60, 1), rgba(239, 35, 60, 0.3) 50%, rgba(239, 35, 60, 1));
+    box-shadow: 0 0 8px rgba(239, 35, 60, 0.6);
+}
+
+.bar-inner {
+    /* Container interno da barra para centralizar conteúdo e espaçamento */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.bar-title {
+    /* Título dentro da barra com peso e tamanho */
+    font-weight: 600;
+    color: #fff;
+    font-size: 24px;
+}
+
+.count {
+    /* Container para contadores com layout flexível */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-weight: 800;
+}
+
+.num {
+    /* Número grande e colorido para destaque */
+    font-size: 44px;
+    color: var(--primary);
+}
+
+.label {
+    /* Texto de rótulo para números */
+    font-size: 24px;
+    color: #fff;
+}
+
+.chunk {
+    /* Agrupamento flexível para alinhar itens na linha de base */
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.wrap {
+    /* Container principal com altura mínima e padding lateral */
+    position: relative;
+    min-height: 100vh;
+    padding-inline: 100px;
+    background-image: url('img.png'); /* Imagem de fundo */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right calc(50% + var(--hero-offset-y));
+}
+
+.hero {
+    /* Seção herói com largura máxima e espaçamento vertical */
+    max-width: 1440px;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15vh 0 40px;
+}
+
+.left {
+    /* Painel esquerdo do herói com fundo semi-transparente e bordas arredondadas */
+    position: relative;
+    max-width: 540px;
+    padding: 38px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: saturate(120%) blur(2px);
+    -webkit-backdrop-filter: saturate(120%) blur(2px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.left::before {
+    /* Efeito decorativo com gradiente radial no painel esquerdo */
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(60% 50% at 0% 0%, rgba(239, 35, 60, 0.08), transparent 60%);
+    pointer-events: none; /* Não interfere em interações */
+}
+
+h1 {
+    /* Estilo para títulos principais com tamanho responsivo */
+    font-size: clamp(38px, 6vw, 64px);
+    line-height: 1.02;
+    letter-spacing: -0.5px;
+    margin: 0 0 16px;
+    font-weight: 700;
+}
+
+.accent {
+    /* Texto com cor primária para destaque */
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.yt {
+    /* Cor vermelha para elementos relacionados ao YouTube */
+    color: #ff2d55;
+}
+
+.sub {
+    /* Texto secundário com cor suave e largura máxima */
+    color: var(--muted);
+    max-width: 56ch;
+    margin: 0 0 18px;
+}
+
+.card {
+    /* Cartão com fundo transparente e sem padding ou borda */
+    margin-top: 24px;
+    background: transparent;
+    padding: 0;
+    border: 0;
+}
+
+.card .row {
+    /* Layout em grid para linhas dentro do cartão */
+    display: grid;
+    gap: 12px;
+}
+
+.in {
+    /* Estilo base para inputs */
+    width: 100%;
+    height: 56px;
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+    padding: 0 18px;
+    transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+.in--light {
+    /* Variante clara para inputs */
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #fff;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25) inset, 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.in--light::placeholder {
+    /* Cor do placeholder para inputs claros */
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.in--light:focus {
+    /* Estilo ao focar no input claro */
+    border-color: rgba(239, 35, 60, 0.65);
+    box-shadow:
+        0 0 0 4px rgba(239, 35, 60, 0.18),
+        0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.btn {
+    /* Estilo base para botões */
+    border: 0;
+    cursor: pointer;
+}
+
+.btn--hero {
+    /* Botão principal do herói com gradiente e sombra */
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding-inline: 40px;
+    height: 64px;
+    margin-top: 14px;
+    border-radius: 12px;
+    justify-content: space-between;
+    color: #fff;
+    font-weight: 800;
+    font-size: 18px;
+    background: linear-gradient(180deg, var(--primary), var(--primary-2));
+    box-shadow:
+        0 14px 28px rgba(239, 35, 60, 0.28),
+        inset 0 -4px 0 rgba(0, 0, 0, 0.25);
+    transition: filter 0.15s, transform 0.05s;
+}
+
+.btn--hero:hover {
+    /* Efeito hover para clarear o botão */
+    filter: brightness(1.05);
+}
+
+.btn--hero:active {
+    /* Efeito ao clicar no botão (pressionado) */
+    transform: translateY(1px);
+}
+
+.btn--hero .cta-arrow {
+    /* Estilo para a seta dentro do botão */
+    font-size: 26px;
+    line-height: 1;
+    margin-left: 14px;
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+.btn--hero .cta-text {
+    /* Espaçamento para texto dentro do botão */
+    margin-left: 4px;
+}
+
+.btn--hero .yt-chip {
+    /* Badge estilo YouTube dentro do botão */
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #fff;
+}
+
+.safe {
+    /* Texto de segurança ou aviso com tamanho pequeno */
+    color: #dcdce6;
+    font-size: 14px;
+    line-height: 1.45;
+    margin-top: 10px;
+}
+
+.safe a {
+    /* Links dentro do texto de segurança */
+    color: #fff;
+    text-decoration: underline;
+}
+
+.tiny-badges {
+    /* Container para pequenos badges com espaçamento e quebra de linha */
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tiny {
+    /* Estilo para badges pequenos */
+    background: #141419;
+    color: #d7d7e2;
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 999px; /* Forma de pílula */
+    border: 1px solid var(--stroke);
+}
+
+/* Media Queries agrupados e simplificados para responsividade */
+
+@media (max-width: 1200px) {
+    /* Reduz padding lateral em telas médias */
+    .wrap {
+        padding-inline: 40px;
+    }
+}
+
+@media (max-width: 880px) {
+    /* Ajustes para telas menores */
+    .bar-title {
+        font-size: 18px;
+    }
+    .num {
+        font-size: 34px;
+    }
+    .label {
+        font-size: 16px;
+    }
+    .wrap {
+        --hero-offset-y: 60px; /* Aumenta deslocamento vertical do herói */
+        padding-inline: 8px;
+        background-position: center calc(50% + var(--hero-offset-y));
+    }
+    .hero {
+        padding-top: 16vh;
+    }
+    .left {
+        max-width: 100%;
+        padding: 20px;
+        border-radius: 16px;
+        background: rgba(0, 0, 0, 1); /* Fundo opaco */
+    }
+    .help {
+        margin-left: -1px;
+    }
+    .help .mini {
+        flex-shrink: 0 !important; /* Impede encolhimento */
+    }
+}
+
+@media (max-width: 760px) {
+    /* Ajustes para telas pequenas */
+    .wrap {
+        background-image: url('tel.png') !important; /* Troca imagem de fundo */
+    }
+    .bar {
+        background: rgba(0, 0, 0, 0.9) !important; /* Fundo mais escuro na barra */
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajustes para telas muito pequenas */
+    .num {
+        font-size: 28px;
+    } 
+    .label {
+        font-size: 14px;
+    }
+    .btn--hero {
+        height: 60px;
+        font-size: 16px;
+    }
+    .bar-inner {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+    .count {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+    .chunk {
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+    }
+    .bar-title {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 410px) {
+    /* Esconde o componente ajuda em telas muito pequenas */
+    .help {
+        display: none !important;
+    }
+}

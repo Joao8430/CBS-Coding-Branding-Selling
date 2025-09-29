@@ -1,2 +1,2 @@
-# CBS---Coding-Branding-Selling 💻📕
-O objetivo do projeto, foi refazer o projeto todo. Usei linguagens JAVASCRIPT| HTML | CSS com imagens de fundo e botões. 
+# CBS-JOAO
+Projeto de um curso chamado CBS do Herbert, projeto que ele fez a gente refazer o site do curso dele 
